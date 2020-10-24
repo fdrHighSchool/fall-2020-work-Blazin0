@@ -1,8 +1,8 @@
 # FDR High School - AP CS A
 
-## Last Name: 
-## First Name: 
-## GitHub Username:
+## Last Name: Huang
+## First Name: Thomas
+## GitHub Username: Blazin0
 
 
 ### General Workflow: 
