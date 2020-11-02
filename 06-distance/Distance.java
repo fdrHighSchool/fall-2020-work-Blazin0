@@ -19,11 +19,8 @@ public class Distance{
     int y1 = getY(point1);
     int x2 = getX(point2);
     int y2 = getY(point2);
-    int xtotal = Math.abs(x2-x1);
-    int ytotal = Math.abs(y2-y1);
-    double distance = Math.sqrt(Math.pow(xtotal, 2) + Math.pow(ytotal, 2));
-
-    System.out.println("the distance in between is " + distance);
+    System.out.println(cartesianDistance(x1,y1,x2,y2));
+    System.out.println(taxicabDistance(x1,y1,x2,y2));
     //send data to methods to calculate distance
 
 
@@ -43,8 +40,10 @@ public class Distance{
    * I: pass in x1, y1, x2, y2
    * R: the result of the distance formula: sqrt((x2 - x1)^2 + (y2 - y1)^2)
    */
-  public static double euclideanDistance(){
-    return 0.0;
+  public static double cartesianDistance(double x1,double y1,double x2,double y2){
+
+    double distance = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
+    return distance;
   }//end cartesianDistance
 
 
@@ -54,8 +53,10 @@ public class Distance{
    * I:
    * R:
    */
-  public static double taxicabDistance(){
-    return 0.0;
+  public static double taxicabDistance(double x1,double y1,double x2,double y2){
+
+    double distance = Math.abs((x2-x1) + Math.abs(y2-y1));
+    return distance;
   }//end cartesianDistance
 
 

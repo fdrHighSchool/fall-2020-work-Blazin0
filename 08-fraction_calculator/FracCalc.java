@@ -25,12 +25,16 @@ public class FracCalc {
      *      Example: return ==> "1_1/4"
      */
     public static String produceAnswer(String input){
+        //CHECKPOINT 1
         String frac1 = input.substring(0, input.indexOf(' '));
         System.out.println("fraction 1:" + frac1);
         String op = input.substring(frac1.length() + 1,frac1.length() + 2);
         System.out.println("operator:" + op);
         String frac2 = input.substring(frac1.length() + 3);
         System.out.println("fraction 2:" + frac2);
+        //CHECKPOINT 2
+
+
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
         // Checkpoint 2: Return the second operand as a string representing each part.
