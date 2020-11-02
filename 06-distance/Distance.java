@@ -19,7 +19,11 @@ public class Distance{
     int y1 = getY(point1);
     int x2 = getX(point2);
     int y2 = getY(point2);
-    Distance(x1,y1,x2,y2);
+    int xtotal = Math.abs(x2-x1);
+    int ytotal = Math.abs(y2-y1);
+    double distance = Math.sqrt(Math.pow(xtotal, 2) + Math.pow(ytotal, 2));
+
+    System.out.println("the distance in between is " + distance);
     //send data to methods to calculate distance
 
 
@@ -74,15 +78,10 @@ public class Distance{
     int para = point.indexOf(')');
     //we know it will start after the comma
     //It will end before the closed parenthesis
-    String y = point.substring((comma + 1), para);
+    String y = point.substring((comma + 2), para);
     System.out.println(y);
     // ADDING SPACE WILL ADD A SPACE IN THE FRONT
     return Integer.parseInt(y);
   }//end getY method
-  public static int Distance(int x1, int y1, int x2, int y2){
-      int distance = Math.abs(x2-x1) + Math.abs(y2-y1);
-      System.out.println("the distance in between is " + distance);
-      return distance;
 
-    }//end method
 }//end class
