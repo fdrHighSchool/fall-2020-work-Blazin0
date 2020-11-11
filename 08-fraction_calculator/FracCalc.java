@@ -7,45 +7,47 @@ public class FracCalc {
             System.out.println("Enter a problem!(ex: 4_2/3 + 6_2/1)");
             String problem = scan.nextLine();
             System.out.println(problem);
-            if (problem.contains("/0")) { //set if there is /0
-              System.out.println("ERROR: Cannot divide by zero."); //print error
-              break; //stop the program
-            }   
+            if (problem.contains("/0")) { //ERROR DENOMINATOR
+              System.out.println(" Cant have a zero for a denominator");
+              break;
+            }   //IF END
+            else if (op.length() > 1){ //ERROR OPERATOR
+              System.out.println(" Cant have more than one operator");
+              break;
+            }//IF END
             String answer = produceAnswer(problem);
             String whole = answer.substring(0, answer.indexOf("_"));//takes whole number
             String oper = answer.substring(0, answer.length());//takes the whole fraction
-            //String anum = oper.substring(oper.indexOf('_') + 1, oper.indexOf('/'));//takes the num
-            //String aden = oper.substring(oper.indexOf('/'));//takes the denominator
-            if (answer.contains("0/1")){
+            if (answer.contains("0/1")){//IF ANSWER CONTAINS NO NUMERATOR
               System.out.println(whole);
             }
-            else if(whole.contains("0")){
+            else if(whole.contains("0")){// IF WHOLE NUMBER IS 0
               System.out.println(oper.substring(oper.indexOf("_") + 1));
             }
-            else{
+            else{// PRINT OUT THE ANSWER
               System.out.println(answer);
             }
-            System.out.println("type 'quit' to quit the Calculator");
+            System.out.println("type 'quit' to quit the Calculator");//QUIT
             String quit = scan.nextLine();
             if(quit.contains("quit")){
               calc = false;
-            }
-        }
+            }//END QUIT
+        }//END WHILE
     }//end main method
     public static String produceAnswer(String input){
         //CHECKPOINT 1
-        String operand1 = input.substring(0, input.indexOf(' '));
-        operand1 = inttofrac(operand1);
+        String operand1 = input.substring(0, input.indexOf(' ')); //OPERAND 1
+        operand1 = inttofrac(operand1);//int to fraction
         System.out.println("operand1:" + operand1);
         String op = input.substring(input.indexOf(' ') + 1,input.indexOf(' ') + 2);//finds the operator
         System.out.println("operator:" + op);
-        String operand2 = input.substring(input.lastIndexOf(' ') + 1);//Finds the last space, adding 1 to not include the space
-        operand2 = inttofrac(operand2);
+        String operand2 = input.substring(input.lastIndexOf(' ') + 1);//OPERAND 2
+        operand2 = inttofrac(operand2);//int to fraction
         System.out.println("operand2:" + operand2);
-        if (operand1.contains("/") && !operand1.contains("_")) {
+        if (operand1.contains("/") && !operand1.contains("_")) {// IF OPERAND 1 HAS NO WHOLE NUMBERS CONVERT TO WHOLE NUMBERS
           operand1 = conmix(operand1);
         }
-        if (operand2.contains("/") && !operand2.contains("_")) {
+        if (operand2.contains("/") && !operand2.contains("_")) {// IF OPERAND 1 HAS NO WHOLE NUMBERS CONVERT TO WHOLE NUMBERS
           operand2 = conmix(operand2);
         }
         if (operand1.contains("_") == true){
@@ -147,9 +149,9 @@ public class FracCalc {
       String red = reduce(Integer.parseInt(num1), Integer.parseInt(den1));//returns the GCD of the numbers
       String num2 = red.substring(0,red.indexOf("/"));// final Numerator
       String den2 = red.substring(red.indexOf("/") + 1, red.length());// final Denominator
-      int whole = Integer.parseInt(num2) / Integer.parseInt(den2);
-      int tnum = Integer.parseInt(num2) % Integer.parseInt(den2);
-      String total = String.valueOf(whole) + "_" + String.valueOf(tnum) + "/" + den2;
+      int whole = Integer.parseInt(num2) / Integer.parseInt(den2);//FINDS WHOLE NUMBERS
+      int tnum = Integer.parseInt(num2) % Integer.parseInt(den2);//FINDS REMAINDER
+      String total = String.valueOf(whole) + "_" + String.valueOf(tnum) + "/" + den2;//COMBINE THEM
       return total;
     }
     public static String confrac(String f){//CONVERTS WHOLE NUMBERS FROM FRACTIONS
