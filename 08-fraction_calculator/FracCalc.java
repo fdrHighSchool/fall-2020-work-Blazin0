@@ -7,6 +7,7 @@ public class FracCalc {
             System.out.println("Enter a problem!(ex: 4_2/3 + 6_2/1)");
             String problem = scan.nextLine();
             System.out.println(problem);
+            String op = problem.substring(problem.indexOf(' ') + 1,problem.indexOf(' ') + 2);
             if (problem.contains("/0")) { //ERROR DENOMINATOR
               System.out.println(" Cant have a zero for a denominator");
               break;
@@ -21,7 +22,7 @@ public class FracCalc {
             if (answer.contains("0/1")){//IF ANSWER CONTAINS NO NUMERATOR
               System.out.println(whole);
             }
-            else if(whole.contains("0")){// IF WHOLE NUMBER IS 0
+            else if(whole.equals("0")){// IF WHOLE NUMBER IS 0
               System.out.println(oper.substring(oper.indexOf("_") + 1));
             }
             else{// PRINT OUT THE ANSWER
@@ -36,7 +37,7 @@ public class FracCalc {
     }//end main method
     public static String produceAnswer(String input){
         //CHECKPOINT 1
-        String operand1 = input.substring(0, input.indexOf(' ')); //OPERAND 1
+        String operand1 = input.substring(0, input.indexOf(' ')); //OPERAND 1\
         operand1 = inttofrac(operand1);//int to fraction
         System.out.println("operand1:" + operand1);
         String op = input.substring(input.indexOf(' ') + 1,input.indexOf(' ') + 2);//finds the operator
@@ -60,16 +61,14 @@ public class FracCalc {
           System.out.println("whole number1: " + operand1 + " numerator 1: 0" + " denominator 1: 1");
         }
         if (operand2.contains("_") == true){
-          //Fraction 1
-          //whole number
           String wholenum2 = whole(operand2);
           //numerator and denominator
           String numer2 = operand2.substring(operand2.indexOf('_') + 1, operand2.indexOf('/'));
           String denom2 = operand2.substring(operand2.indexOf('/') + 1 );
-          System.out.println("whole number 1: " + wholenum2 + " numerator 1: " + numer2 + " denominator 1: " + denom2 );
+          System.out.println("whole number 2: " + wholenum2 + " numerator 2: " + numer2 + " denominator 2: " + denom2 );
         }//end fraction 2
         else{
-          System.out.println("whole number1: " + operand2 + " numerator 1: 0" + " denominator 1: 0");
+          System.out.println("whole number 2: " + operand2 + " numerator 2: 0" + " denominator 2: 0");
         }
         operand1 = confrac(operand1);
         operand2 = confrac(operand2);
@@ -157,9 +156,15 @@ public class FracCalc {
     public static String confrac(String f){//CONVERTS WHOLE NUMBERS FROM FRACTIONS
       String whole = f.substring(0,f.indexOf("_"));
       String num = f.substring(f.indexOf("_") + 1, f.indexOf("/"));
-      String den = f.substring(f.indexOf("/") + 1 ,f.length());
+      String den = f.substring(f.indexOf("/") + 1, f.length());
       int tnum = Integer.parseInt(whole) * Integer.parseInt(den) + Integer.parseInt(num);
       String total = String.valueOf(tnum) + "/" + den;
+      // if (whole.contains("-")){
+      //   String num2 = "-" + f.substring(f.indexOf("_") + 1, f.indexOf("/"));
+      //   int tnum2 = Integer.parseInt(whole) * Integer.parseInt(den) + Integer.parseInt(num2);
+      //     String total2 = String.valueOf(tnum2) + "/" + den;
+      //     return total2;
+      // }
       return total;
     }
     public static String whole(String f){//Whole number
@@ -172,9 +177,9 @@ public class FracCalc {
       }
     }
     public static String numer(String f){//numerator
-      String numer = f.substring(0,f.indexOf("/"));
-      return numer;
-    }
+        String numer = f.substring(0,f.indexOf("/"));
+        return numer;
+      }
     public static String denom(String f){//denominator
       String denom = f.substring(f.indexOf('/') + 1,f.length());
       return denom;
@@ -189,7 +194,7 @@ public class FracCalc {
       return a;
     }
     public static int GCD(int num, int den) {// Greatest Common Divisor
-    if (den == 0) {
+    if (den == 0) {// If Numerator % Denominator and Denominator = 0
       return num;
     }
     return GCD(den, num % den);
