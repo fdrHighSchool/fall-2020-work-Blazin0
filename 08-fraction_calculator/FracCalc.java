@@ -78,6 +78,7 @@ public class FracCalc {
           return aplus;
         }
         if(op.contains("-") == true){
+
           String aminus = minus(operand1,operand2);
           System.out.println(minus(operand1,operand2));
           return aminus;
@@ -142,7 +143,7 @@ public class FracCalc {
       String total = String.valueOf(n) + "/" + String.valueOf(d);
       return total;
     }
-    public static String conmix(String f){//CONVERTS MIXED FRACTIONS
+    public static String conmix(String f){//CONVERTS MIXED FRACTIONS TO WHOLE FRACTIONS
       String den1 = f.substring(f.indexOf("/") + 1, f.length());//inital Denominator
       String num1 = f.substring(0,f.indexOf("/"));//inital Numerator
       String red = reduce(Integer.parseInt(num1), Integer.parseInt(den1));//returns the GCD of the numbers
@@ -153,18 +154,13 @@ public class FracCalc {
       String total = String.valueOf(whole) + "_" + String.valueOf(tnum) + "/" + den2;//COMBINE THEM
       return total;
     }
-    public static String confrac(String f){//CONVERTS WHOLE NUMBERS FROM FRACTIONS
+    public static String confrac(String f){//CONVERTS WHOLE FRACTION TO MIXED FRACTION
+      f = negative(f);
       String whole = f.substring(0,f.indexOf("_"));
       String num = f.substring(f.indexOf("_") + 1, f.indexOf("/"));
       String den = f.substring(f.indexOf("/") + 1, f.length());
       int tnum = Integer.parseInt(whole) * Integer.parseInt(den) + Integer.parseInt(num);
       String total = String.valueOf(tnum) + "/" + den;
-      // if (whole.contains("-")){
-      //   String num2 = "-" + f.substring(f.indexOf("_") + 1, f.indexOf("/"));
-      //   int tnum2 = Integer.parseInt(whole) * Integer.parseInt(den) + Integer.parseInt(num2);
-      //     String total2 = String.valueOf(tnum2) + "/" + den;
-      //     return total2;
-      // }
       return total;
     }
     public static String whole(String f){//Whole number
@@ -177,12 +173,24 @@ public class FracCalc {
       }
     }
     public static String numer(String f){//numerator
-        String numer = f.substring(0,f.indexOf("/"));
+        String numer = f.substring(f.indexOf("_") + 1,f.indexOf("/"));
         return numer;
       }
     public static String denom(String f){//denominator
       String denom = f.substring(f.indexOf('/') + 1,f.length());
       return denom;
+    }
+    public static String negative(String f){
+      String whole = whole(f);
+      String num = numer(f);
+      String den = denom(f);
+      int whole1 = Integer.parseInt(whole);
+      int num1 = Integer.parseInt(num);
+      if (whole1 < 0){
+        num1 = num1 * -1;
+      }
+      String total = String.valueOf(whole1) + "_" + String.valueOf(num1) + "/" + den;
+      return total;
     }
     public static String inttofrac(String a){//TURNS A INTEGER TO A FRACTION
       if (a.contains("/") && !a.contains("_")) {
