@@ -13,7 +13,7 @@ public class FracCalc {
               break;
             }   //IF END
             else if (op.length() > 1){ //ERROR MORE THAN 1 OPERATOR
-              System.out.println(" Cant have more than one operator");
+              System.out.println(" This calculator doesnt support more than one operator");
               break;
             }// ELSE IF END
             String answer = produceAnswer(problem);
@@ -66,71 +66,60 @@ public class FracCalc {
         }
         operand1 = confrac(operand1);
         operand2 = confrac(operand2);
-        if(op.contains("+") == true){
-          String aplus = plus(operand1,operand2);
-          System.out.println(plus(operand1,operand2));
+        //A = Answer,
+        int Anum1 = Integer.parseInt(numer(operand1));//Numerator 1st A
+        int Aden1 = Integer.parseInt(denom(operand1));//Denominator 1st B
+        int Anum2 = Integer.parseInt(numer(operand2));//Numerator 2nd C
+        int Aden2 = Integer.parseInt(denom(operand2));//Denominator 2nd D
+        if(op.contains("+")){
+          String aplus = plus(Anum1,Aden1,Anum2,Aden2);
+          System.out.println(plus(Anum1,Aden1,Anum2,Aden2));
           return aplus;
         }
-        if(op.contains("-") == true){
+        if(op.contains("-")){
 
-          String aminus = minus(operand1,operand2);
-          System.out.println(minus(operand1,operand2));
+          String aminus = minus(Anum1,Aden1,Anum2,Aden2);
+          System.out.println(minus(Anum1,Aden1,Anum2,Aden2));
           return aminus;
         }
-        if(op.contains("*") == true){
-          String amultiply = multiply(operand1,operand2);
-          System.out.println(multiply(operand1,operand2));
+        if(op.contains("*")){
+          String amultiply = multiply(Anum1,Aden1,Anum2,Aden2);
+          System.out.println(multiply(Anum1,Aden1,Anum2,Aden2));
           return amultiply;
         }
-        if(op.contains("/") == true){
-          String adivide = divide(operand1,operand2);
-          System.out.println(divide(operand1,operand2));
+        if(op.contains("/")){
+          String adivide = divide(Anum1,Aden1,Anum2,Aden2);
+          System.out.println(divide(Anum1,Aden1,Anum2,Aden2));
           return adivide;
         }
         return "";
     }//end produceAnswer method
-    public static String plus(String fo,String so){//First operand Second operand ADDING
-        String num1 = numer(fo);//Numerator 1st A
-        String den1 = denom(fo);//Denominator 1st B
-        String num2 = numer(so);//Numerator 2nd C
-        String den2 = denom(so);//Denominator 2nd D
-        int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2) + Integer.parseInt(num2) * Integer.parseInt(den1);// (A*D)+(C*B)
-        int totalden = Integer.parseInt(den1) * Integer.parseInt(den2);// D*B
-        String reduce = reduce(totalnum,totalden);
-        String total = conmix(reduce(totalnum,totalden));// divides the num to the den then it changes it to the whole num fractions and returns it as a string
+    public static String plus(int num1,int den1,int num2,int den2){//First operand Second operand ADDING
+        int totalnum = num1 * den2 + num2 * den1;// (A*D)+(C*B)
+        int totalden = den1 * den2;// D*B
+        // divides the num to the den then it changes it to the whole num fractions and returns it as a string
+        String total = conmix(reduce(totalnum,totalden));
         return total;
     }
-    public static String minus(String fo, String so){
-       String num1 = numer(fo);//Numerator 1st A
-       String den1 = denom(fo);//Denominator 1st B
-       String num2 = numer(so);//Numerator 2nd C
-       String den2 = denom(so);//Denominator 2nd D
-       int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2) - Integer.parseInt(num2) * Integer.parseInt(den1);// (A*D)-(C*B)
-       int totalden = Integer.parseInt(den1) * Integer.parseInt(den2);
+    public static String minus(int num1,int den1,int num2,int den2){
+       int totalnum = num1 * den2 - num2 * den1; // (A*D)-(C*B)
+       int totalden = den1 * den2;
        String total = conmix(reduce(totalnum,totalden));
        return total;
     }
-    public static String multiply(String fo, String so){
-       String num1 = numer(fo);//Numerator 1st A
-       String den1 = denom(fo);//Denominator 1st B
-       String num2 = numer(so);//Numerator 2nd C
-       String den2 = denom(so);//Denominator 2nd D
-       int totalnum = Integer.parseInt(num1) * Integer.parseInt(num2);//(A*B)
-       int totalden = Integer.parseInt(den1) * Integer.parseInt(den2);//(C*D)
+    public static String multiply(int num1,int den1,int num2,int den2){
+       int totalnum = num1 * num2;//(A*B)
+       int totalden = den1 * den2;//(C*D)
        String total = conmix(reduce(totalnum,totalden));
        return total;
     }
-    public static String divide(String fo, String so){
-       String num1 = numer(fo);//Numerator 1st A
-       String den1 = denom(fo);//Denominator 1st B
-       String num2 = numer(so);//Numerator 2nd C
-       String den2 = denom(so);//Denominator 2nd D
-       int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2);//(A*D)
-       int totalden = Integer.parseInt(den1) * Integer.parseInt(num2);//(C*B)
+    public static String divide(int num1,int den1,int num2,int den2){
+       int totalnum = num1 * den2;//(A*D)
+       int totalden = den1 * num2;//(C*B)
        String total = conmix(reduce(totalnum,totalden));
        return total;
     }
-    public static String reduce(int n, int d){// REDUCING THE FRACTION
+    public static String reduce(int n, int d){// REDUCING THE FRACTION (online)
       int c = GCD(n,d); // holder for GCD
       n = n/c;
       d = d/c;
@@ -143,8 +132,8 @@ public class FracCalc {
       String red = reduce(Integer.parseInt(num1), Integer.parseInt(den1));//returns the GCD of the numbers
       String num2 = red.substring(0,red.indexOf("/"));// final Numerator
       String den2 = red.substring(red.indexOf("/") + 1, red.length());// final Denominator
-      int whole = Integer.parseInt(num2) / Integer.parseInt(den2);//FINDS WHOLE NUMBERS
       int tnum = Integer.parseInt(num2) % Integer.parseInt(den2);//FINDS REMAINDER
+      int whole = Integer.parseInt(num2) / Integer.parseInt(den2);//FINDS WHOLE NUMBERS
       String total = String.valueOf(whole) + "_" + String.valueOf(tnum) + "/" + den2;//COMBINE THEM
       return total;
     }
@@ -195,10 +184,11 @@ public class FracCalc {
       }
       return a;
     }
-    public static int GCD(int num, int den) {// Greatest Common Divisor
+    public static int GCD(int num, int den) {// Greatest Common Divisor (online)
     if (den == 0) {// If Numerator % Denominator and Denominator = 0
       return num;
     }
     return GCD(den, num % den);
     }
 }//end class
+//Reducing and GCD I used https://www.geeksforgeeks.org/reduce-the-fraction-to-its-lowest-form/
