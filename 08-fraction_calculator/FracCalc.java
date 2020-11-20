@@ -3,19 +3,19 @@ public class FracCalc {
     public static void main(String[] args){
       boolean calc = true;
         Scanner scan = new Scanner(System.in);
-        while (calc){
+        while (calc){//WHILE LOOP
             System.out.println("Enter a problem!(ex: 4_2/3 + 6_2/1)");
             String problem = scan.nextLine();
             System.out.println(problem);
-            String op = problem.substring(problem.indexOf(' ') + 1,problem.indexOf(' ') + 2);
-            if (problem.contains("/0")) { //ERROR DENOMINATOR
+            String op = problem.substring(problem.indexOf(' ') + 1,problem.indexOf(' ') + 2);//OPERATOR
+            if (problem.contains("/0")) { //ERROR NO DENOMINATOR
               System.out.println(" Cant have a zero for a denominator");
               break;
             }   //IF END
-            else if (op.length() > 1){ //ERROR OPERATOR
+            else if (op.length() > 1){ //ERROR MORE THAN 1 OPERATOR
               System.out.println(" Cant have more than one operator");
               break;
-            }//IF END
+            }// ELSE IF END
             String answer = produceAnswer(problem);
             String whole = answer.substring(0, answer.indexOf("_"));//takes whole number
             String oper = answer.substring(0, answer.length());//takes the whole fraction
@@ -45,12 +45,6 @@ public class FracCalc {
         String operand2 = input.substring(input.lastIndexOf(' ') + 1);//OPERAND 2
         operand2 = inttofrac(operand2);//int to fraction
         System.out.println("operand2:" + operand2);
-        if (operand1.contains("/") && !operand1.contains("_")) {// IF OPERAND 1 HAS NO WHOLE NUMBERS CONVERT TO WHOLE NUMBERS
-          operand1 = conmix(operand1);
-        }
-        if (operand2.contains("/") && !operand2.contains("_")) {// IF OPERAND 1 HAS NO WHOLE NUMBERS CONVERT TO WHOLE NUMBERS
-          operand2 = conmix(operand2);
-        }
         if (operand1.contains("_") == true){
           String wholenum1 = whole(operand1);//whole number
           String numer1 = operand1.substring(operand1.indexOf('_') + 1, operand1.indexOf('/'));//numerator
@@ -96,10 +90,10 @@ public class FracCalc {
         return "";
     }//end produceAnswer method
     public static String plus(String fo,String so){//First operand Second operand ADDING
-        String num1 = numer(fo);//Numerator 1st operand    A
-        String den1 = denom(fo);//Denominator 1st operand  B
-        String num2 = numer(so);//Numerator 2nd operand    C
-        String den2 = denom(so);//Denominator 2nd operand  D
+        String num1 = numer(fo);//Numerator 1st A
+        String den1 = denom(fo);//Denominator 1st B
+        String num2 = numer(so);//Numerator 2nd C
+        String den2 = denom(so);//Denominator 2nd D
         int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2) + Integer.parseInt(num2) * Integer.parseInt(den1);// (A*D)+(C*B)
         int totalden = Integer.parseInt(den1) * Integer.parseInt(den2);// D*B
         String reduce = reduce(totalnum,totalden);
@@ -107,36 +101,36 @@ public class FracCalc {
         return total;
     }
     public static String minus(String fo, String so){
-       String num1 = numer(fo);//Numerator 1st operand    A
-       String den1 = denom(fo);//Denominator 1st operand  B
-       String num2 = numer(so);//Numerator 2nd operand    C
-       String den2 = denom(so);//Denominator 2nd operand  D
-       int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2) - Integer.parseInt(num2) * Integer.parseInt(den1);
+       String num1 = numer(fo);//Numerator 1st A
+       String den1 = denom(fo);//Denominator 1st B
+       String num2 = numer(so);//Numerator 2nd C
+       String den2 = denom(so);//Denominator 2nd D
+       int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2) - Integer.parseInt(num2) * Integer.parseInt(den1);// (A*D)-(C*B)
        int totalden = Integer.parseInt(den1) * Integer.parseInt(den2);
        String total = conmix(reduce(totalnum,totalden));
        return total;
     }
     public static String multiply(String fo, String so){
-       String num1 = numer(fo);//Numerator 1st operand    A
-       String den1 = denom(fo);//Denominator 1st operand  B
-       String num2 = numer(so);//Numerator 2nd operand    C
-       String den2 = denom(so);//Denominator 2nd operand  D
-       int totalnum = Integer.parseInt(num1) * Integer.parseInt(num2);
-       int totalden = Integer.parseInt(den1) * Integer.parseInt(den2);
+       String num1 = numer(fo);//Numerator 1st A
+       String den1 = denom(fo);//Denominator 1st B
+       String num2 = numer(so);//Numerator 2nd C
+       String den2 = denom(so);//Denominator 2nd D
+       int totalnum = Integer.parseInt(num1) * Integer.parseInt(num2);//(A*B)
+       int totalden = Integer.parseInt(den1) * Integer.parseInt(den2);//(C*D)
        String total = conmix(reduce(totalnum,totalden));
        return total;
     }
     public static String divide(String fo, String so){
-       String num1 = numer(fo);//Numerator 1st operand    A
-       String den1 = denom(fo);//Denominator 1st operand  B
-       String num2 = numer(so);//Numerator 2nd operand    C
-       String den2 = denom(so);//Denominator 2nd operand  D
-       int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2);
-       int totalden = Integer.parseInt(den1) * Integer.parseInt(num2);
+       String num1 = numer(fo);//Numerator 1st A
+       String den1 = denom(fo);//Denominator 1st B
+       String num2 = numer(so);//Numerator 2nd C
+       String den2 = denom(so);//Denominator 2nd D
+       int totalnum = Integer.parseInt(num1) * Integer.parseInt(den2);//(A*D)
+       int totalden = Integer.parseInt(den1) * Integer.parseInt(num2);//(C*B)
        String total = conmix(reduce(totalnum,totalden));
        return total;
     }
-    public static String reduce(int n, int d){// n is num d is den
+    public static String reduce(int n, int d){// REDUCING THE FRACTION
       int c = GCD(n,d); // holder for GCD
       n = n/c;
       d = d/c;
@@ -180,7 +174,7 @@ public class FracCalc {
       String denom = f.substring(f.indexOf('/') + 1,f.length());
       return denom;
     }
-    public static String negative(String f){
+    public static String negative(String f){//TURNS THE NUMERATOR TO A NEGATIVE IF THE WHOLE NUMBER IS NEGATIVE
       String whole = whole(f);
       String num = numer(f);
       String den = denom(f);
