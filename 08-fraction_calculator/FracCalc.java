@@ -2,7 +2,7 @@ import java.util.*;
 public class FracCalc {
     public static void main(String[] args){
       boolean calc = true;
-        Scanner scan = new Scanner(System.in);
+      Scanner scan = new Scanner(System.in);
         while (calc){//WHILE LOOP
             System.out.println("Enter a problem!(ex: 4_2/3 + 6_2/1)");
             String problem = scan.nextLine();

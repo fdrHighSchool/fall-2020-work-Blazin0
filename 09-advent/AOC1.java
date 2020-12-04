@@ -1,5 +1,6 @@
 import java.util.*;
-public class DayOne{
+//2015 Day 1
+public class AOC1{
   public static void main(String[] args) {
     Scanner scan = new Scanner(System.in);
     System.out.println("What is floor is he on?");
