@@ -62,7 +62,7 @@ public class FracCalc {
           System.out.println("whole number 2: " + wholenum2 + " numerator 2: " + numer2 + " denominator 2: " + denom2 );
         }//end fraction 2
         else{
-          System.out.println("whole number 2: " + operand2 + " numerator 2: 0" + " denominator 2: 0");
+          System.out.println("whole number 2: " + operand2 + " numerator 2: 0" + " denominator 2: 1");
         }
         operand1 = confrac(operand1);
         operand2 = confrac(operand2);
