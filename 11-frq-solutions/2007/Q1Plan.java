@@ -18,7 +18,7 @@ R: True
 (ISS)
 IsSelfDivisor(number){
   while num less than 0{
-   if num mod 10 == 0 or number % (number % 10) != 0{
+   if num mod 10 == 0 or number % (number % 10) != 0(I searched this up){
    (if the number is divisible by 10 or the number mod by its
    self disivor does not equal 0 than)
     return false

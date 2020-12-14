@@ -17,6 +17,7 @@ public class Q1_2007{
   }
   public static boolean isSelfDivisor(int number){
     while (number > 0){
+      //i searched up this up i didnt know how to individually go through each digit 
       if(number % 10 == 0 || number % (number % 10) != 0){
         return false;
       }
