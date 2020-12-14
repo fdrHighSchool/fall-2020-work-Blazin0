@@ -35,7 +35,7 @@ FirstNumSelfDivisor(num, value){
  int[] list
  placement = 0
  while loop(placement < num) {
-  if (???){
+  if (selfdivisor(num)){
     add on list
     placement++
     }
