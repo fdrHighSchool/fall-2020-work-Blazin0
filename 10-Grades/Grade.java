@@ -1,7 +1,6 @@
 import java.util.*;
-public class Grade {
+class Main {
   public static void main(String[] args) {
-
     Scanner s = new Scanner(System.in);
     System.out.println("Input how many grades you want");
     int nums = s.nextInt();
@@ -11,7 +10,7 @@ public class Grade {
       arr[i] = s.nextInt();
     }
     System.out.println("median: " + median(sta(arr)));
-    System.out.println("average: " + average(sta(arr)));
+    System.out.println("average: " + getAverage(sta(arr)));
     System.out.println("mode: "+ mode(sta(arr)));
   }//End of Main method
   public static int[] sta(int[] arr){//Sort The Array
@@ -20,9 +19,9 @@ public class Grade {
         int holder = 0;
         //it will grab 1 number and checks the list if that number is bigger than any other number. then it repeats with the next number of the list.
         if(arr[a] > arr[b]){//IF NUMBER[A] IS BIGGER THAN NUMBER[B]
-          holder = arr[a];//HOLDER = NUMBER[A]
-          arr[a] = arr[b];//NUMBER[A] = NUMBER[B]
-          arr[b] = holder;//NUMBER[B] = HOLDER (NUMBER[A])
+          holder = arr[a];//HOLDER BECOMES NUMBER[A]
+          arr[a] = arr[b];//NUMBER[A] BECOMES NUMBER[B]
+          arr[b] = holder;//NUMBER[B] BECOMES NUMBER[A](HOLDER)
         }
         //[A] and [B] switch placements and will repeat till arr.length
       }
@@ -38,15 +37,15 @@ public class Grade {
     double right = arr[arr.length / 2];
     double left = arr[arr.length / 2 - 1];
     return (right+left)/2;
-   }
- }//end of Median
-  public static double average(int[] arr){
+    }
+  }
+  public static double getAverage(int[] arr){
     double sum = 0;
     for(int i = 0; i < arr.length; i++){
       sum += arr[i];
     }
     return sum / arr.length;
-  }//end of Average
+  }
   public static int mode(int[] arr){
     int maxnum = 0;
     int placement = 0;
@@ -56,12 +55,18 @@ public class Grade {
         if(arr[a] == arr[b]){
           count++;
         }
+
         if(count > maxnum){
           maxnum = count;
           placement = arr[a];
         }
+
       }
+      }
+        if(maxnum == 1){
+          System.out.println("No Mode");
+          return 0;
     }
     return placement;
-  }//end of mode
+  }
 }//end class
