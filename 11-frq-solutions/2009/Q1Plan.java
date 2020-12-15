@@ -10,7 +10,7 @@ numtosses > 0
 return array
 
 B)
-getLongestRun(int[] arr, cubetosses)
+getLongestRun(int[] arr)
 int[] array;
 int run = 0
 int maxnum = 0
