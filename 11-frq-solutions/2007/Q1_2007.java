@@ -18,9 +18,7 @@ public class Q1_2007{
   }
   public static boolean isSelfDivisor(int num){
     int number = num;
-    int holder = 0;
     while (number > 0){
-
       if(number % 10 == 0 || num % (number % 10) != 0){
         return false;
       }
