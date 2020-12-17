@@ -41,8 +41,8 @@ class Main {
   }
   public static double getAverage(int[] arr){
     double sum = 0;
-    for(int i = 0; i < arr.length; i++){
-      sum += arr[i];
+    for(int i : arr){
+      sum += i;
     }
     return sum / arr.length;
   }
